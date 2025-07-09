@@ -1,0 +1,28 @@
+🎉 CRM Frontend and Backend successfully deployed!
+
+To access the services locally, run the following in **separate terminals**:
+
+Frontend:
+  kubectl port-forward svc/{{ .Values.frontend.service.name }} 3000:{{ .Values.frontend.service.targetPort }}
+
+Backend:
+  kubectl port-forward svc/{{ .Values.backend.service.name }} 5001:{{ .Values.backend.service.port }}
+
+Then open your browser and navigate to:
+
+  Frontend: http://localhost:3000
+  Backend API: http://localhost:5001
+
+---
+
+📦 Frontend Service Info:
+  Service Name: {{ .Values.frontend.service.name }}
+  Type: {{ .Values.frontend.service.type }}
+  Port: {{ .Values.frontend.service.port }}
+
+📦 Backend Service Info:
+  Service Name: {{ .Values.backend.service.name }}
+  Type: {{ .Values.backend.service.type }}
+  Port: {{ .Values.backend.service.port }}
+
+🚀 Enjoy using your CRM app!
