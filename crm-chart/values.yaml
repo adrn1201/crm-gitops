@@ -1,0 +1,33 @@
+frontend:
+  image:
+    repository: ghcr.io/adrn1201/crm-frontend
+    tag: v1.0.4
+    pullSecret: ghcr-secret
+  replicas: 1
+  containerPort: 80
+  configMapName: frontend-config
+  appName: frontend
+  config:
+    name: frontend-config
+    apiUrl: http://localhost:5001
+  service:
+    name: frontend-service
+    type: NodePort
+    port: 80
+    targetPort: 80
+
+backend:
+  appName: crm-backend
+  image:
+    repository: ghcr.io/adrn1201/crm-backend
+    tag: v1.0.4
+    pullSecret: ghcr-secret
+  replicas: 1
+  containerPort: 8000
+  env:
+    MONGODB_URI: mongodb://mongo:27017/mydatabase
+  service:
+    name: backend-service
+    type: ClusterIP
+    port: 80
+    targetPort: 8000
