@@ -9,15 +9,17 @@ spec:
   source:
     repoURL: https://github.com/adrn1201/crm-gitops.git
     targetRevision: HEAD
-    path: .
-
+    path: crm-chart               
+    helm:
+      valueFiles:
+        - values.yaml           
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: default           
 
   syncPolicy:
     automated:
-      prune: true       
-      selfHeal: true    
+      prune: true                 
+      selfHeal: true              
     syncOptions:
-      - CreateNamespace=true  
+      - CreateNamespace=true     
