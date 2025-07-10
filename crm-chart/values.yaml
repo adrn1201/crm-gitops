@@ -34,4 +34,4 @@ backend:
 
 ingress:
   enabled: true
-  host: crm.local
+  host: crm.test
