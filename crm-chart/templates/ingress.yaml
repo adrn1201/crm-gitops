@@ -1,13 +1,16 @@
-{{- if .Values.ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: crm-ingress
+  name: {{ .Values.frontend.ingress.name }}
   annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    app.kubernetes.io/managed-by: Helm
 spec:
+  ingressClassName: nginx
   rules:
-    - host: {{ .Values.ingress.host }}
+    - host: {{ .Values.frontend.ingress.host }}
       http:
         paths:
           - path: /
@@ -17,5 +20,3 @@ spec:
                 name: {{ .Values.frontend.service.name }}
                 port:
                   number: {{ .Values.frontend.service.port }}
-{{- end }}
-

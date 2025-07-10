@@ -15,23 +15,9 @@ frontend:
     type: NodePort
     port: 80
     targetPort: 80
-
-backend:
-  appName: crm-backend
-  image:
-    repository: ghcr.io/adrn1201/crm-backend
-    tag: v1.0.4
-    pullSecret: ghcr-secret
-  replicas: 1
-  containerPort: 8000
-  env:
-    MONGODB_URI: mongodb://mongo:27017/mydatabase
-  service:
-    name: backend-service
-    type: ClusterIP
-    port: 80
-    targetPort: 8000
-
-ingress:
-  enabled: true
-  host: crm.test
+  ingress:
+    enabled: true
+    name: crm-ingress
+    host: crm.test
+    path: /
+    rewrite: /
